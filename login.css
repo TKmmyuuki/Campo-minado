@@ -1,0 +1,113 @@
+@font-face {
+    font-family: 'Open Sauce';
+    src: url('fonts/OpenSauceSans-Regular.ttf') format('truetype');
+}
+
+body {
+    font-family: 'Open Sauce', sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url('imagens/login.png');
+    background-size: cover; 
+    background-repeat: no-repeat;
+}
+
+.login-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+.cadastro-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 500px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #fdc90b;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="text"], input[type="email"], input[type="tel"], input[type="password"], input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #fdc90b;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.form-group-row .form-group {
+    flex: 1;
+}
+
+label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+}
+
+/* Centraliza o botão horizontalmente no contêiner pai */
+.container {
+    text-align: center; /* Adiciona centralização ao conteúdo do contêiner */
+}
+
+.btn {
+    background-color: #fdc90b;
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Garante que o botão seja tratado como um bloco em linha */
+}
+
+.btn:hover {
+    background-color: #fae67b;
+}
+
+
+.link {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.link a {
+    color: #818181;
+    text-decoration: none;
+}
