@@ -4,18 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campo Minado - Jogo</title>
-    <link rel="stylesheet" href="jogo.css"> 
-    <link rel="icon" type="image/png" href="imagens/logo.png"> 
+    <link rel="stylesheet" href="jogo.css">
+    <link rel="icon" type="image/png" href="imagens/logo.png">
 </head>
 <body>
-    <nav>
-        <img src="imagens/logo_index.png" alt="Logo da MiniMax BOOM" class="imagem-absoluta">
-    </nav>
+    <header>
+        <a href="index.html" class="btn voltar">Voltar</a>
+    </header>
 
-    <div class="jogo-container">
-        <h1>Campo Minado</h1>
-        <!-- Aqui você pode adicionar o conteúdo do jogo -->
-    </div>
+    <section>
+        <div class="time-container">
+            <p>Tempo: <span id="timer">00:00</span></p>
+        </div>
 
+        <div class="game-container">
+            <div class="game-actions">
+                <a href="#" class="btn cheat">Trapaça</a>
+                <a href="jogo.html" class="btn reiniciar">Reiniciar</a>
+                <a href="#historico" class="btn">Histórico</a>
+            </div>
+        </div>
+        <div id="game-board">
+            <img src="imagens/tabuleiro.png" alt="Tabuleiro do Campo Minado">
+        </div>
+        <div class="game-info">
+            <p>Bombas Restantes: <span id="bombs-count">10</span></p>
+            <p>Configuração: <span id="config">12x12</span></p>
+            <p>Modalidade: <span id="mode">Rivotril</span></p>
+        </div>
+       
+    </section>
+    
+    <section>
+        <div id="historico" class="historico-section"></div>
+            <h2>Histórico de Partidas</h2>
+            <!-- Conteúdo do histórico -->
+            <p>Aqui vai o conteúdo do histórico...</p>
+        </div>
+    </section>
 </body>
 </html>

@@ -5,27 +5,21 @@
 
 body {
     font-family: 'Open Sauce', sans-serif;
-    background-color: #f0f0f0;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
-    padding: 0;
+    background-image: url('imagens/login.png');
+    background-size: cover; 
+    background-repeat: no-repeat;
 }
 
-.jogo-container {
-    text-align: center;
-    margin: 20px;
-}
-
-h1 {
-    margin-top: 20px;
-    font-size: 2em;
-}
-
-/*imagem do logo*/
-.imagem-absoluta {
-    position: absolute;
-    top: 0;    
-    left: 0;   
-    margin: 20px;
-    height: auto;
-    width: 130px;
+.perfil-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
 }
