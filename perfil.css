@@ -1,0 +1,31 @@
+@font-face {
+    font-family: 'Open Sauce';
+    src: url('fonts/OpenSauceSans-Regular.ttf') format('truetype');
+}
+
+body {
+    font-family: 'Open Sauce', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.jogo-container {
+    text-align: center;
+    margin: 20px;
+}
+
+h1 {
+    margin-top: 20px;
+    font-size: 2em;
+}
+
+/*imagem do logo*/
+.imagem-absoluta {
+    position: absolute;
+    top: 0;    
+    left: 0;   
+    margin: 20px;
+    height: auto;
+    width: 130px;
+}

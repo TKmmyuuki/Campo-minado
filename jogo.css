@@ -3,6 +3,11 @@
     src: url('fonts/OpenSauceSans-Regular.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'Open Sauce';
+    src: url('fonts/OpenSauceSans-Regular.ttf') format('truetype');
+}
+
 body {
     font-family: 'Open Sauce', sans-serif;
     background-color: #f0f0f0;
