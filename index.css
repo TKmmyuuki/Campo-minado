@@ -17,6 +17,8 @@ body {
     background-repeat: no-repeat;
 }
 
+
+/* parte do nav */
 nav {
     width: 100%;
     color: #fff;
@@ -24,7 +26,7 @@ nav {
     text-align: center;
     box-sizing: border-box;
 }
-
+/*botão para sair*/
 nav .btn-sair {
     background-color: #fdc90b;
     color: black;
@@ -34,11 +36,15 @@ nav .btn-sair {
     font-weight: bold;
     transition: background-color 0.3s ease;
 }
-
 nav .btn-sair:hover {
     background-color: #fae67b;
 }
-
+nav .sair {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+/*imagem do logo*/
 .imagem-absoluta {
     position: absolute;
     top: 0;    
@@ -47,17 +53,14 @@ nav .btn-sair:hover {
     height: auto;
     width: 130px;
 }
-
-/* Contêiner que alinha os botões horizontalmente */
+/*botões centralizados*/
 nav .button-container {
-    display: flex; /* Usa Flexbox para alinhar os itens horizontalmente */
-    justify-content: center; /* Centraliza os botões horizontalmente */
-    gap: 20px; /* Espaço entre os botões */
-    width: 100%; /* Garante que o contêiner ocupe toda a largura disponível */
+    display: flex; 
+    justify-content: center; 
+    gap: 20px; 
+    width: 100%; 
     margin-top: 10px;
 }
-
-/* Estilos dos botões */
 nav .btn {
     background-color: #fdc90b;
     color: black;
@@ -68,70 +71,60 @@ nav .btn {
     transition: background-color 0.3s ease;
     display: inline-block;
 }
-
 nav .btn:hover {
     background-color: #fae67b;
 }
 
 
-nav .sair {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-}
-
+/*section WELCOME - inicial*/
 .welcome-section {
-    margin-top: 10px; /* Espaçamento no topo da seção */
-    text-align: left;  /* Alinha o texto à esquerda dentro da seção */
-    width: 100%; /* Garante que a seção ocupe toda a largura disponível */
-    padding-left: 50px; /* Adiciona um pouco de espaçamento à esquerda */
-    box-sizing: border-box; /* Inclui padding na largura total */
-    display: flex; /* Usa flexbox para posicionamento */
-    flex-direction: column; /* Alinha os filhos em coluna */
-    align-items: flex-start; /* Alinha os filhos no início (esquerda) */
+    margin-top: 10px; 
+    text-align: left;  
+    width: 100%; 
+    padding-left: 50px; 
+    box-sizing: border-box;
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start;
 }
-
 .welcome-section h1 {
-    font-size: 3rem; /* Tamanho do texto do h1 */
+    font-size: 3rem; 
     font-weight: bold;
-    margin-bottom: 10px; /* Espaçamento abaixo do h1 */
+    margin-bottom: 10px; 
 }
-
+/*opções de tamanho, quantidade de bombas e modo de jogo*/
 .options {
     padding-left: 60px; 
-    display: flex; /* Usa flexbox para organizar os grupos de opções em linhas diferentes */
-    flex-direction: column; /* Alinha os grupos de opções verticalmente */
-    gap: 12px; /* Espaçamento entre os grupos de opções */
+    display: flex; 
+    flex-direction: column; 
+    gap: 12px; 
 }
-
 .option-group {
     display: flex;
-    flex-wrap: nowrap; /* Garante que os botões fiquem em uma única linha */
+    flex-wrap: nowrap; 
     gap: 10px;
 }
-
-/* Ajusta o botão */
+/*botão de jogar*/
 .btn-jogar {
-    display: block; /* Faz o botão se comportar como um bloco */
-    margin: 0 auto; /* Centraliza horizontalmente */
-    position: relative; /* Permite ajustar a posição usando top e left */
-    top: -150px; /* Ajusta a posição verticalmente para cima, altere conforme necessário */
-    /* Você pode ajustar o valor de top para mover o botão para cima ou para baixo */
+    display: block; 
+    margin: 0 auto; 
+    position: relative;
+    top: -150px; 
 }
-
 .btn-jogar img {
     display: block; 
-    width: 150px; /* Largura da imagem */
+    width: 150px; 
     height: auto;
-    max-width: 100%; /* Garante que a imagem não exceda a largura do contêiner */
-    border-radius: 5px; /* Adiciona bordas arredondadas, se desejar */
-    transition: opacity 0.3s ease; /* Transição suave para opacidade */
+    max-width: 100%; 
+    border-radius: 5px; 
+    transition: opacity 0.3s ease; 
 }
-
 .btn-jogar:hover img {
-    opacity: 0.8; /* Adiciona um efeito de escurecimento ao passar o mouse */
+    opacity: 0.8; 
 }
 
+
+/*section RANKING - segunda*/
 .ranking{
     background-image: url('imagens/ranking.png');
     width: 100%;
@@ -139,62 +132,55 @@ nav .sair {
     padding: 1rem;
     box-sizing: border-box;
     display: flex;
-    flex-direction: column; /* Organiza os filhos em coluna */
-    align-items: flex-end; /* Alinha os filhos no início (esquerda) */
+    flex-direction: column; 
+    align-items: flex-end; 
 }
-
-/* Alinha o contêiner da tabela à direita dentro da section */
-.leaderboard-container {
-    width: 700px; /* Define uma largura fixa para a tabela */
-    max-width: 100%; /* Garante que a tabela não ultrapasse a largura da tela */
-    border-radius: 5px; /* Borda arredondada opcional */
-    margin-right: 30px;
-}
-
-.leaderboard-table {
-    width: 100%; /* Faz a tabela ocupar toda a largura do contêiner */
-    border-collapse: collapse; /* Remove espaçamento entre bordas */
-}
-
-.leaderboard-table th, .leaderboard-table td {
-    padding: 10px; /* Adiciona espaçamento interno às células */
-    text-align: center; /* Alinha o texto ao centro */
-}
-
-.leaderboard-table th {
-    background-color: #FFD700; /* Cor amarela para o cabeçalho */
-    color: black; /* Cor do texto no cabeçalho */
-}
-
-.leaderboard-table td {
-    background-color: #FFFFFF; /* Cor branca para as células */
-    color: black; /* Cor do texto nas células */
-}
-
 .ranking-section {
     margin-top: 50px;
     width: 100%;
     padding: 20px 0;
     box-sizing: border-box;
     display: flex;
-    flex-direction: row; /* Coloca os elementos lado a lado */
-    align-items: center; /* Centraliza verticalmente */
-    justify-content: center; /* Centraliza horizontalmente */
-    gap: 10px; /* Espaçamento entre a imagem e o texto */
+    flex-direction: row;
+    align-items: center; 
+    justify-content: center; 
+    gap: 10px; 
 }
-
 .ranking-section h1 {
     font-size: 3rem;
     font-weight: bold;
-    margin: 0; /* Remove a margem padrão */
+    margin: 0; 
 }
-
 .ranking-section img {
     width: 50px;
     height: auto;
 }
+/*tabela de ranking*/
+.leaderboard-container {
+    width: 700px; 
+    max-width: 100%; 
+    border-radius: 5px; 
+    margin-right: 30px;
+}
+.leaderboard-table {
+    width: 100%; 
+    border-collapse: collapse; 
+}
+.leaderboard-table th, .leaderboard-table td {
+    padding: 10px;
+    text-align: center; 
+}
+.leaderboard-table th {
+    background-color: #FFD700; 
+    color: black;
+}
+.leaderboard-table td {
+    background-color: #FFFFFF; 
+    color: black; 
+}
 
 
+/*section COMO JOGAR / MANUAL - ultima parte*/
 .manual{
     background-image: url('imagens/manual.png');
     width: 100%;
@@ -202,11 +188,10 @@ nav .sair {
     padding: 1rem;
     box-sizing: border-box;
     display: flex;
-    flex-direction: column; /* Organiza os filhos em coluna */
-    align-items: flex-start; /* Alinha os filhos no início (esquerda) */
+    flex-direction: column; 
+    align-items: flex-start; 
     padding-block-end: 50px;
 }
-
 .manual h1{
     font-size: 3rem;
     font-weight: bold;
@@ -215,7 +200,6 @@ nav .sair {
     padding-top: 100px;
     padding-left: 30px;
 }
-
 .manual h2{
     font-size: 2rem;
     font-weight: bold;
@@ -223,7 +207,6 @@ nav .sair {
     color:white;
     padding-left: 30px;
 }
-
 .manual ul{
     font-size: 1.3rem;
     margin: 0;
