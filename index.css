@@ -134,6 +134,7 @@ nav .btn:hover {
     display: flex;
     flex-direction: column; 
     align-items: flex-end; 
+    background-repeat: no-repeat;
 }
 .ranking-section {
     margin-top: 50px;
@@ -213,4 +214,27 @@ nav .btn:hover {
     color:white;
     padding-left: 70px;
     padding-block-end: 20px;
+}
+/*botão de começar*/
+/*botões centralizados*/
+.button-comecar {
+    display: flex; 
+    justify-content: center; 
+    gap: 20px; 
+    width: 100%; 
+    margin-top: 10px;
+    font-size: 2rem;
+}
+.btn {
+    background-color: #fdc90b;
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+.btn:hover {
+    background-color: #fae67b;
 }
