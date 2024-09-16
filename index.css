@@ -85,7 +85,6 @@ nav .btn:hover {
     align-items: flex-start;
     background-image: url('imagens/fundo_index.png');
     background-size: contain;
-    border: 2px solid blue;
     background-repeat: no-repeat;
     background-position: right;
     
