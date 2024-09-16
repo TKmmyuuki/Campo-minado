@@ -12,11 +12,8 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-image: url('imagens/fundo_index.png');
-    background-size: cover; 
-    background-repeat: no-repeat;
+    
 }
-
 
 /* parte do nav */
 nav {
@@ -86,6 +83,12 @@ nav .btn:hover {
     display: flex; 
     flex-direction: column; 
     align-items: flex-start;
+    background-image: url('imagens/fundo_index.png');
+    background-size: contain;
+    border: 2px solid blue;
+    background-repeat: no-repeat;
+    background-position: right;
+    
 }
 .welcome-section h1 {
     font-size: 3rem; 
@@ -134,7 +137,7 @@ nav .btn:hover {
     display: flex;
     flex-direction: column; 
     align-items: flex-end; 
-    background-repeat: no-repeat;
+
 }
 .ranking-section {
     margin-top: 50px;
@@ -181,6 +184,7 @@ nav .btn:hover {
 }
 
 
+
 /*section COMO JOGAR / MANUAL - ultima parte*/
 .manual{
     background-image: url('imagens/manual.png');
@@ -192,6 +196,9 @@ nav .btn:hover {
     flex-direction: column; 
     align-items: flex-start; 
     padding-block-end: 50px;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-color: #7fb82f;
 }
 .manual h1{
     font-size: 3rem;
