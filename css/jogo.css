@@ -16,7 +16,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-image: url('imagens/jogo.png');
+    background-image: url('/images/jogo.png');
     background-size: cover; 
     background-repeat: no-repeat;
     background-color: #7fb82f;
@@ -140,7 +140,7 @@ main {
 }
 /*section RANKING - segunda*/
 .ranking{
-    background-image: url('imagens/ranking.png');
+    background-image: url('/images/ranking.png');
     width: 100%;
     color: black;
     padding: 1rem;
