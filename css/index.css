@@ -83,7 +83,7 @@ nav .btn:hover {
     display: flex; 
     flex-direction: column; 
     align-items: flex-start;
-    background-image: url("/images/fundo_index.png");
+    background-image: url("../images/fundo_index.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: right;
@@ -128,7 +128,7 @@ nav .btn:hover {
 
 /*section RANKING - segunda*/
 .ranking{
-    background-image: url('/images/ranking.png');
+    background-image: url('../images/ranking.png');
     width: 100%;
     color: black;
     padding: 1rem;
@@ -186,7 +186,7 @@ nav .btn:hover {
 
 /*section COMO JOGAR / MANUAL - ultima parte*/
 .manual{
-    background-image: url('/images/manual.png');
+    background-image: url('../images/manual.png');
     width: 100%;
     color: black;
     padding: 1rem;

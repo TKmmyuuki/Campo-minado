@@ -16,7 +16,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-image: url('/images/jogo.png');
+    background-image: url('../images/jogo.png');
     background-size: cover; 
     background-repeat: no-repeat;
     background-color: #7fb82f;
@@ -76,7 +76,7 @@ main {
     gap: 20px; /* Espaço entre a caixa de informações e a caixa de ações */
 }
 
-#game-board {
+#game {
     background-color: transparent; /* Sem fundo para o tabuleiro */
     border-radius: 8px;
     width: 400px; /* Define uma largura fixa para o tabuleiro */
@@ -85,11 +85,20 @@ main {
     margin: 0 auto; /* Centraliza o tabuleiro horizontalmente */
 }
 
-#game-board img {
-    width: 100%; /* Ajusta a imagem para preencher o tabuleiro */
-    height: auto; /* Mantém a proporção da imagem */
-    border: 2px solid #000000; /* Borda ao redor do tabuleiro */
+#game-board {
+    display: grid; /* Usando CSS Grid */
+    grid-template-columns: repeat(auto-fill, calc(400px / var(--columns)));
+    grid-template-rows: repeat(auto-fill, calc(400px / var(--rows)));
+    width: 400px;
+    height: 400px;
 }
+
+.cell {
+    background-color: #ccc; /* Cor de fundo da célula */
+    border: 1px solid #999; /* Borda da célula */
+    aspect-ratio: 1; /* Mantém as células quadradas */
+}
+
 
 .game-info {
     background-color: #ffffff;
@@ -140,7 +149,7 @@ main {
 }
 /*section RANKING - segunda*/
 .ranking{
-    background-image: url('/images/ranking.png');
+    background-image: url('../images/ranking.png');
     width: 100%;
     color: black;
     padding: 1rem;

@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campo Minado</title>
-    <link rel="stylesheet" href="/css/index.css"> 
-    <link rel="icon" type="image/png" href="/images/logo.png"> 
+    <link rel="stylesheet" href="../css/index.css"> 
+    <link rel="icon" type="image/png" href="../images/logo.png"> 
 </head>
 <body>
     <nav>
-        <img src="/images/logo_index.png" alt="Logo da MiniMax BOOM" class="imagem-absoluta">
+        <img src="../images/logo_index.png" alt="Logo da MiniMax BOOM" class="imagem-absoluta">
         <div class="button-container">
             <a href="#manual" class="btn">Como Jogar?</a>
             <a href="#ranking" class="btn">Ranking</a>
-            <a href="/pages/perfil.html" class="btn">Atualizar Perfil</a>
+            <a href="../pages/perfil.html" class="btn">Atualizar Perfil</a>
         </div>
         <div class="sair">
-            <a href="/pages/login.html" class="btn btn-sair">Sair</a>
+            <a href="../pages/login.html" class="btn btn-sair">Sair</a>
         </div>
     </nav>
 
@@ -32,42 +32,42 @@
                     <label for="10x10">10x10</label>
                     <input type="radio" id="15x15" name="grid-size" value="15x15">
                     <label for="15x15">15x15</label>
-                    <input type="radio" id="custom" name="grid-size" value="custom">
-                    <label for="custom">Personalizado</label>
+                    <input type="radio" id="custom" name="grid-size" value="personalizado">
+                    <label for="personalizado">Personalizado</label>
                 </div>
             </div>
 
             <div class="option-box">
                 <h2>Quantidade de Bombas</h2>
                 <div class="option-group">
-                    <input type="radio" id="15bombs" name="bomb-count" value="15bombs">
-                    <label for="15bombs">15 bombas</label>
-                    <input type="radio" id="20bombs" name="bomb-count" value="20bombs">
-                    <label for="20bombs">20 bombas</label>
-                    <input type="radio" id="bomb-custom" name="bomb-count" value="bomb-custom">
+                    <input type="radio" id="bomb-15" name="bomb-count" value="15">
+                    <label for="bomb-15">15 bombas</label>
+                    <input type="radio" id="bomb-20" name="bomb-count" value="20">
+                    <label for="bomb-20">20 bombas</label>
+                    <input type="radio" id="bomb-custom" name="bomb-count" value="personalizado">
                     <label for="bomb-custom">Personalizado</label>
                 </div>
-            </div>
+            </div>            
 
             <div class="option-box">
                 <h2>Modo de Jogo</h2>
                 <div class="option-group">
-                    <input type="radio" id="classic" name="game-mode" value="classic">
-                    <label for="classic">Clássico</label>
+                    <input type="radio" id="classic" name="game-mode" value="clássico">
+                    <label for="classico">Clássico</label>
                     <input type="radio" id="rivotril" name="game-mode" value="rivotril">
                     <label for="rivotril">Rivotril</label>
                 </div>
             </div>
         </div>
     
-    <a href="/pages/jogo.html" class="btn-jogar">
-        <img src="/images/botao-jogar.png" alt="Jogar">
+    <a href="jogo.html" id="btn-jogar" class="btn-jogar">
+        <img src="../images/botao-jogar.png" alt="Jogar">
     </a>
     </div>
      <section id="ranking" class="ranking">
         <div class="leaderboard-container">
             <div class="ranking-section">
-                <img src="/images/trofeu.webp" alt="GIF animado">
+                <img src="../images/trofeu.webp" alt="GIF animado">
                 <h1>Ranking</h1>
             </div>
             <table class="leaderboard-table">
@@ -122,5 +122,7 @@
             <a href="#top" class="btn">Começar</a>
         </div>
     </section>
+
+    <script src="../js/index.js"></script>
 </body>
 </html>
