@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campo Minado</title>
-    <link rel="stylesheet" href="../css/index.css"> 
-    <link rel="icon" type="image/png" href="../images/logo.png"> 
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="icon" type="image/png" href="../images/logo.png">
 </head>
+
 <body>
     <nav>
         <img src="../images/logo_index.png" alt="Logo da MiniMax BOOM" class="imagem-absoluta">
@@ -20,7 +22,7 @@
         </div>
     </nav>
 
-    <div id = "top" class="welcome-section">
+    <div id="top" class="welcome-section">
         <div class="welcome-text">
             <h1>Bem-vindo ao <br>Campo Minado!</h1>
         </div>
@@ -40,7 +42,7 @@
                 <div id="custom-size-input" style="display: none; margin-top: 10px;">
                     <label for="custom-rows">Linhas (até 25):</label>
                     <input type="number" id="custom-rows" min="1" max="25" value="10">
-                    
+
                     <label for="custom-cols">Colunas (até 25):</label>
                     <input type="number" id="custom-cols" min="1" max="25" value="10">
                 </div>
@@ -62,7 +64,7 @@
                     <label for="custom-bombs">Número de bombas (até o limite de espaços):</label>
                     <input type="number" id="custom-bombs" min="1" value="10">
                 </div>
-            </div>                     
+            </div>
 
             <div class="option-box">
                 <h2>Modo de Jogo</h2>
@@ -74,12 +76,12 @@
                 </div>
             </div>
         </div>
-    
-    <a href="jogo.html" id="btn-jogar" class="btn-jogar">
-        <img src="../images/botao-jogar.png" alt="Jogar">
-    </a>
+
+        <a href="jogo.html" id="btn-jogar" class="btn-jogar">
+            <img src="../images/botao-jogar.png" alt="Jogar">
+        </a>
     </div>
-     <section id="ranking" class="ranking">
+    <section id="ranking" class="ranking">
         <div class="leaderboard-container">
             <div class="ranking-section">
                 <img src="../images/trofeu.webp" alt="GIF animado">
@@ -98,16 +100,96 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>1</td><td>Adf23_SA</td><td>20X20</td><td>14</td><td>clássico</td><td>03 : 45 : 20</td><td>21/03/2024</td></tr>
-                    <tr><td>2</td><td>Adf23_SA</td><td>20X20</td><td>14</td><td>clássico</td><td>03 : 45 : 20</td><td>21/03/2024</td></tr>
-                    <tr><td>3</td><td>Adf23_SA</td><td>20X20</td><td>14</td><td>clássico</td><td>03 : 45 : 20</td><td>21/03/2024</td></tr>
-                    <tr><td>4</td><td>Adf23_SA</td><td>20X20</td><td>14</td><td>clássico</td><td>03 : 45 : 20</td><td>21/03/2024</td></tr>
-                    <tr><td>5</td><td>Adf23_SA</td><td>20X20</td><td>14</td><td>clássico</td><td>03 : 45 : 20</td><td>21/03/2024</td></tr>
-                    <tr><td>6</td><td>Adf23_SA</td><td>20X20</td><td>14</td><td>clássico</td><td>03 : 45 : 20</td><td>21/03/2024</td></tr>
-                    <tr><td>7</td><td>Adf23_SA</td><td>20X20</td><td>14</td><td>clássico</td><td>03 : 45 : 20</td><td>21/03/2024</td></tr>
-                    <tr><td>8</td><td>Adf23_SA</td><td>20X20</td><td>14</td><td>clássico</td><td>03 : 45 : 20</td><td>21/03/2024</td></tr>
-                    <tr><td>9</td><td>Adf23_SA</td><td>20X20</td><td>14</td><td>clássico</td><td>03 : 45 : 20</td><td>21/03/2024</td></tr>
-                    <tr><td>10</td><td>Adf23_SA</td><td>20X20</td><td>14</td><td>clássico</td><td>03 : 45 : 20</td><td>21/03/2024</td></tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Adf23_SA</td>
+                        <td>20X20</td>
+                        <td>14</td>
+                        <td>clássico</td>
+                        <td>03 : 45 : 20</td>
+                        <td>21/03/2024</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Adf23_SA</td>
+                        <td>20X20</td>
+                        <td>14</td>
+                        <td>clássico</td>
+                        <td>03 : 45 : 20</td>
+                        <td>21/03/2024</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Adf23_SA</td>
+                        <td>20X20</td>
+                        <td>14</td>
+                        <td>clássico</td>
+                        <td>03 : 45 : 20</td>
+                        <td>21/03/2024</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Adf23_SA</td>
+                        <td>20X20</td>
+                        <td>14</td>
+                        <td>clássico</td>
+                        <td>03 : 45 : 20</td>
+                        <td>21/03/2024</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Adf23_SA</td>
+                        <td>20X20</td>
+                        <td>14</td>
+                        <td>clássico</td>
+                        <td>03 : 45 : 20</td>
+                        <td>21/03/2024</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Adf23_SA</td>
+                        <td>20X20</td>
+                        <td>14</td>
+                        <td>clássico</td>
+                        <td>03 : 45 : 20</td>
+                        <td>21/03/2024</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Adf23_SA</td>
+                        <td>20X20</td>
+                        <td>14</td>
+                        <td>clássico</td>
+                        <td>03 : 45 : 20</td>
+                        <td>21/03/2024</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Adf23_SA</td>
+                        <td>20X20</td>
+                        <td>14</td>
+                        <td>clássico</td>
+                        <td>03 : 45 : 20</td>
+                        <td>21/03/2024</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Adf23_SA</td>
+                        <td>20X20</td>
+                        <td>14</td>
+                        <td>clássico</td>
+                        <td>03 : 45 : 20</td>
+                        <td>21/03/2024</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Adf23_SA</td>
+                        <td>20X20</td>
+                        <td>14</td>
+                        <td>clássico</td>
+                        <td>03 : 45 : 20</td>
+                        <td>21/03/2024</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -117,7 +199,8 @@
         <div>
             <h1>Como Jogar?</h1>
             <ul>
-                <li>Use o botão direito do mouse para selecionar um bloco e verificar se ele está vazio <br>ou se tem uma mina;</li>
+                <li>Use o botão direito do mouse para selecionar um bloco e verificar se ele está vazio <br>ou se tem
+                    uma mina;</li>
                 <li>Se aparecer uma mina, você perde. Se aparecer um número, significa que ele está vazio;</li>
                 <li>Cada número indica quantas minas estão ao redor do bloco com o número;</li>
                 <li>Use o botão esquerdo do mouse para indicar que um bloco tem uma mina;</li>
@@ -125,12 +208,20 @@
             </ul>
             <h2>Modo de Jogo</h2>
             <ul>
-                <li><strong>Clássico:</strong> o cronômetro começa assim que você clica em "Jogar" e continua até que o <br>jogo termine.</li>
-                <li><strong>Rivotril:</strong> um cronômetro regressivo é iniciado, e o jogador precisa terminar a partida <br>antes que o tempo acabe. Caso contrário, a partida será registrada como uma "derrota" <br>no histórico.</li>
+                <li><strong>Clássico:</strong> o cronômetro começa assim que você clica em "Jogar" e continua até que o
+                    <br>jogo termine.
+                </li>
+                <li><strong>Rivotril:</strong> um cronômetro regressivo é iniciado, e o jogador precisa terminar a
+                    partida <br>antes que o tempo acabe. Caso contrário, a partida será registrada como uma "derrota"
+                    <br>no histórico.
+                </li>
             </ul>
-            <h2 id = "manual">Recurso Adicional</h2>
+            <h2 id="manual">Recurso Adicional</h2>
             <ul>
-                <li><strong>Trapaça:</strong> temporariamente revela todas as células do tabuleiro. Após o tempo de <br>exibição permitido, as células não abertas retomam ao estado original, sem impactar o <br>progresso do jogo.</li>
+                <li><strong>Trapaça:</strong> temporariamente revela todas as células do tabuleiro. Após o tempo de
+                    <br>exibição permitido, as células não abertas retomam ao estado original, sem impactar o
+                    <br>progresso do jogo.
+                </li>
             </ul>
         </div>
         <div class="button-comecar">
@@ -140,4 +231,5 @@
 
     <script src="../js/index.js"></script>
 </body>
+
 </html>

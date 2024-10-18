@@ -3,9 +3,26 @@
     src: url('fonts/OpenSauceSans-Regular.ttf') format('truetype');
 }
 
+
+:root {
+    --primary-text-color: #000;
+    --secondary-text-color: #fff;
+    --primary-soft-text-color: #555;
+    --primary-color: #fff;
+    --secondary-color: #7db82f;
+    --button-color: #fdc90b;
+    --button-hover-color: #fae67b;
+    --restart-button-color: #5c9dff;
+    --cheat-button-color: #ff5c5c;
+    --header-color: #ffd700;
+    --cell-border-color: #999;
+    --hidden-cell-color: #ccc;
+}
+
+
 body {
     font-family: 'Open Sauce', sans-serif;
-    background-color: #f0f0f0;
+    background-color: var(--primary-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,7 +34,7 @@ body {
 }
 
 .login-container {
-    background-color: #fff;
+    background-color: var(--primary-color);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -25,7 +42,7 @@ body {
 }
 
 .cadastro-container {
-    background-color: #fff;
+    background-color: var(--primary-color);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -33,7 +50,7 @@ body {
 }
 
 .perfil-container {
-    background-color: #fff;
+    background-color: var(--primary-color);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -49,7 +66,7 @@ input[type="text"], input[type="password"] {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #fdc90b;
+    border: 1px solid var(--button-color);
     border-radius: 4px;
     box-sizing: border-box;
 }
@@ -58,7 +75,7 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="password
     width: 100%;
     padding: 10px;
     margin: 5px 0;
-    border: 1px solid #fdc90b;
+    border: 1px solid var(--button-color);
     border-radius: 4px;
     box-sizing: border-box;
 }
@@ -95,8 +112,8 @@ label {
 }
 
 .btn {
-    background-color: #fdc90b;
-    color: black;
+    background-color: var(--button-color);
+    color: var(--primary-text-color);
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
@@ -106,7 +123,7 @@ label {
 }
 
 .btn:hover {
-    background-color: #fae67b;
+    background-color: var(--button-hover-color);
 }
 
 
