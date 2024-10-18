@@ -3,9 +3,19 @@
     src: url('fonts/OpenSauceSans-Regular.ttf') format('truetype');
 }
 
+:root {
+    --primary-text-color: #000;
+    --secondary-text-color: #fff;
+    --primary-color: #fff;
+    --secondary-color: #7db82f;
+    --button-color: #fdc90b;
+    --button-hover-color: #fae67b;
+    --header-color: #ffd700;
+}
+
 body {
     font-family: 'Open Sauce', sans-serif;
-    background-color: #ffffff;
+    background-color: var(--primary-color);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -18,15 +28,15 @@ body {
 /* parte do nav */
 nav {
     width: 100%;
-    color: #fff;
+    color: var(--primary-color);
     padding: 1rem;
     text-align: center;
     box-sizing: border-box;
 }
 /*botão para sair*/
 nav .btn-sair {
-    background-color: #fdc90b;
-    color: black;
+    background-color: var(--button-color);
+    color: var(--primary-text-color);
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
@@ -34,7 +44,7 @@ nav .btn-sair {
     transition: background-color 0.3s ease;
 }
 nav .btn-sair:hover {
-    background-color: #fae67b;
+    background-color: var(--button-hover-color);
 }
 nav .sair {
     position: absolute;
@@ -59,8 +69,8 @@ nav .button-container {
     margin-top: 10px;
 }
 nav .btn {
-    background-color: #fdc90b;
-    color: black;
+    background-color: var(--button-color);
+    color: var(--primary-text-color);
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
@@ -69,7 +79,7 @@ nav .btn {
     display: inline-block;
 }
 nav .btn:hover {
-    background-color: #fae67b;
+    background-color: var(--button-hover-color);
 }
 
 
@@ -130,7 +140,7 @@ nav .btn:hover {
 .ranking{
     background-image: url('../images/ranking.png');
     width: 100%;
-    color: black;
+    color: var(--primary-text-color);
     padding: 1rem;
     box-sizing: border-box;
     display: flex;
@@ -174,12 +184,12 @@ nav .btn:hover {
     text-align: center; 
 }
 .leaderboard-table th {
-    background-color: #FFD700; 
-    color: black;
+    background-color: var(--header-color);
+    color: var(--primary-text-color);
 }
 .leaderboard-table td {
-    background-color: #FFFFFF; 
-    color: black; 
+    background-color: var(--primary-color);
+    color: var(--primary-text-color);
 }
 
 
@@ -188,7 +198,7 @@ nav .btn:hover {
 .manual{
     background-image: url('../images/manual.png');
     width: 100%;
-    color: black;
+    color: var(--primary-text-color);
     padding: 1rem;
     box-sizing: border-box;
     display: flex;
@@ -197,13 +207,13 @@ nav .btn:hover {
     padding-block-end: 50px;
     background-position: right;
     background-repeat: no-repeat;
-    background-color: #7fb82f;
+    background-color: var(--secondary-color);
 }
 .manual h1{
     font-size: 3rem;
     font-weight: bold;
     margin: 0;
-    color:white;
+    color: var(--secondary-text-color);
     padding-top: 100px;
     padding-left: 30px;
 }
@@ -211,13 +221,13 @@ nav .btn:hover {
     font-size: 2rem;
     font-weight: bold;
     margin: 0;
-    color:white;
+    color: var(--secondary-text-color);
     padding-left: 30px;
 }
 .manual ul{
     font-size: 1.3rem;
     margin: 0;
-    color:white;
+    color: var(--secondary-text-color);
     padding-left: 70px;
     padding-block-end: 20px;
 }
@@ -232,8 +242,8 @@ nav .btn:hover {
     font-size: 2rem;
 }
 .btn {
-    background-color: #fdc90b;
-    color: black;
+    background-color: var(--button-color);
+    color: var(--primary-text-color);
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
@@ -242,5 +252,5 @@ nav .btn:hover {
     display: inline-block;
 }
 .btn:hover {
-    background-color: #fae67b;
+    background-color: var(--button-hover-color);
 }

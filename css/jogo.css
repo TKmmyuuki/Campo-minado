@@ -8,9 +8,24 @@
     src: url('fonts/OpenSauceSans-Regular.ttf') format('truetype');
 }
 
+:root {
+    --primary-text-color: #000;
+    --secondary-text-color: #fff;
+    --primary-soft-text-color: #555;
+    --primary-color: #fff;
+    --secondary-color: #7db82f;
+    --button-color: #fdc90b;
+    --button-hover-color: #fae67b;
+    --restart-button-color: #5c9dff;
+    --cheat-button-color: #ff5c5c;
+    --header-color: #ffd700;
+    --cell-border-color: #999;
+    --hidden-cell-color: #ccc;
+}
+
 body {
     font-family: 'Open Sauce', sans-serif;
-    background-color: #f0f0f0;
+    background-color: var(--primary-color);
     display:block;
     justify-content: center;
     align-items: center;
@@ -19,7 +34,7 @@ body {
     background-image: url('../images/jogo.png');
     background-size: cover; 
     background-repeat: no-repeat;
-    background-color: #7fb82f;
+    background-color: var(--secondary-color);
 }
 
 header {
@@ -36,8 +51,8 @@ header {
 }
 
 .btn {
-    background-color: #fdc90b;
-    color: black;
+    background-color: var(--button-color);
+    color: var(--primary-text-color);
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
@@ -46,17 +61,17 @@ header {
 }
 
 .btn:hover {
-    background-color: #fae67b;
+    background-color: var(--button-hover-color);
 }
 
 .voltar {
-    background-color: #fdc90b;
-    color: black;
+    background-color: var(--button-color);
+    color: var(--primary-text-color);
 }
 
 .reiniciar {
-    background-color: #5c9dff;
-    color: white;
+    background-color: var(--restart-button-color);
+    color: var(--secondary-text-color);
 }
 
 main {
@@ -94,14 +109,14 @@ main {
 }
 
 .cell {
-    background-color: #ccc; /* Cor de fundo da célula */
-    border: 1px solid #999; /* Borda da célula */
+    background-color: var(--hidden-cell-color); /* Cor de fundo da célula */
+    border: 1px solid var(--cell-border-color); /* Borda da célula */
     aspect-ratio: 1; /* Mantém as células quadradas */
 }
 
 
 .game-info {
-    background-color: #ffffff;
+    background-color: var(--primary-color);
     padding: 20px;
     height: 150px;
     border-radius: 10px;
@@ -115,7 +130,7 @@ main {
     font-weight: bold;
     margin: 10px 2;
     text-align: left;
-    color: #313131d3;
+    color: var(--primary-soft-text-color);
 }
 
 
@@ -125,7 +140,7 @@ main {
 }
 
 .game-actions {
-    background-color: #ffffff;
+    background-color: var(--primary-color);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -139,8 +154,8 @@ main {
 }
 
 .cheat {
-    background-color: #ff5c5c;
-    color: white;
+    background-color: var(--cheat-button-color);
+    color: var(--secondary-text-color);
 }
 
 .game-links a {
@@ -151,7 +166,7 @@ main {
 .ranking{
     background-image: url('../images/ranking.png');
     width: 100%;
-    color: black;
+    color: var(--primary-text-color);
     padding: 1rem;
     box-sizing: border-box;
     display: flex;
@@ -196,18 +211,18 @@ main {
     text-align: center; 
 }
 .leaderboard-table th {
-    background-color: #9fd559; 
-    color: black;
+    background-color: var(--header-color);
+    color: var(--primary-text-color);
 }
 .leaderboard-table td {
-    background-color: #FFFFFF; 
-    color: black; 
+    background-color: var(--primary-color);
+    color: var(--primary-text-color); 
 }
 
 
 /* Estilo adicional para o tempo em destaque */
 .time-container {
-    background-color: #fdc90b;
+    background-color: var(--button-color);
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
