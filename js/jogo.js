@@ -1,16 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
     const gridSize = localStorage.getItem('gridSize');
-    const bombCount = localStorage.getItem('bombCount');
+    const bombCountWithSuffix = localStorage.getItem('bombCount');
     const gameMode = localStorage.getItem('gameMode');
 
     // Verifica se as opções foram corretamente carregadas
-    if (!gridSize || !bombCount || !gameMode) {
+    if (!gridSize || !bombCountWithSuffix || !gameMode) {
         alert("Configurações de jogo não encontradas. Volte à página inicial e configure o jogo.");
         window.location.href = '../pages/index.html';
         return;
     }
 
     // Atualiza as informações na página do jogo
+    const bombCount = bombCountWithSuffix.split(' ')[0]; // Extrai apenas o número de bombas
     document.getElementById('bombs-count').textContent = bombCount;  // Atualiza bombCount
     document.getElementById('config').textContent = gridSize;
     document.getElementById('mode').textContent = gameMode;
@@ -22,42 +23,34 @@ document.addEventListener('DOMContentLoaded', function() {
     document.documentElement.style.setProperty('--columns', cols);
     document.documentElement.style.setProperty('--rows', rows);
 
-    // Converte bombCount para número de minas
-    const numMines = parseInt(bombCount.replace(' bombas', '').trim(), 10); // Ajuste conforme necessário
-
     // Cria o tabuleiro usando as configurações do usuário
-    createBoard(rows, numMines);
+    const numMines = parseInt(bombCount); // Converte o número de bombas para inteiro
+    createBoard(rows, cols, numMines);
 });
 
-function createBoard(boardSize, numMines) {
+
+function createBoard(rows, cols, numMines) {
     const gameBoard = document.getElementById('game-board');
     gameBoard.innerHTML = '';
 
     // Inicializa o tabuleiro
-    const board = []; // Criação do array para o tabuleiro
-    for (let row = 0; row < boardSize; row++) {
-        let rowArray = [];
-        for (let col = 0; col < boardSize; col++) {
+    for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
             const cell = document.createElement('div');
             cell.classList.add('cell');
             cell.dataset.row = row;
             cell.dataset.col = col;
             // Adiciona eventos de clique ou contexto conforme necessário
-            cell.addEventListener('click', function(event) {
-                // Handle cell click logic here
-            });
-            cell.addEventListener('contextmenu', function(event) {
-                // Handle right-click logic here
-            });
             gameBoard.appendChild(cell);
-            rowArray.push({ element: cell, mine: false, revealed: false, flagged: false, adjacentMines: 0 });
         }
-        board.push(rowArray);
     }
 
-    // Coloca as minas e calcula as minas adjacentes
-    placeMines(board, boardSize, numMines);
-    calculateAdjacentMines(board, boardSize);
+    // Cria um tabuleiro para as minas, se necessário
+    const board = Array.from({ length: rows }, () => Array(cols).fill(0));
+
+    // Coloca as minas
+    placeMines(board, rows, cols, numMines);
+    calculateAdjacentMines(board, rows, cols);
 }
 
 function placeMines(board, boardSize, numMines) {
