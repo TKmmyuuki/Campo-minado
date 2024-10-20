@@ -148,6 +148,18 @@ main {
     color: #ff31b0; 
 }
 
+.cell.number-6 {
+    color: #35d3a9; 
+}
+
+.cell.number-7 {
+    color: #fc9d22; 
+}
+
+.cell.number-8 {
+    color: #7b4d2c; 
+}
+
 .game-info {
     background-color: var(--primary-color);
     padding: 20px;
