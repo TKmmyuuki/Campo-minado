@@ -119,6 +119,7 @@ function handleCellClick(event, board, rows, cols, numMines) {
 
     if (revealedCells === rows * cols - numMines) {
         alert('Você venceu!');
+        stopTimer();
     }
 }
 
