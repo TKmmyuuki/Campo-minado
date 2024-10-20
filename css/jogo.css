@@ -112,8 +112,41 @@ main {
     background-color: var(--hidden-cell-color); /* Cor de fundo da célula */
     border: 1px solid var(--cell-border-color); /* Borda da célula */
     aspect-ratio: 1; /* Mantém as células quadradas */
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-size: 18px;
+    transition: background-color 0.1s ease;
 }
 
+.cell.revealed {
+    background-color: var(--button-hover-color); 
+    cursor: default;
+}
+
+.cell.number {
+    font-weight: bold;
+}
+
+.cell.number-1 {
+    color: #38b6ff; 
+}
+
+.cell.number-2 {
+    color: #7fb82f; 
+}
+
+.cell.number-3 {
+    color: #ff3131; 
+}
+
+.cell.number-4 {
+    color: #9531ff; 
+}
+
+.cell.number-5 {
+    color: #ff31b0; 
+}
 
 .game-info {
     background-color: var(--primary-color);
