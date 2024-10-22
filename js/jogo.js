@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
-    const bombCount = bombCountWithSuffix.split(' ')[0];
+    const bombCount = parseInt(bombCountWithSuffix.split(' ')[0]);
     document.getElementById('bombs-count').textContent = bombCount;
     document.getElementById('config').textContent = gridSize;
     document.getElementById('mode').textContent = gameMode;
@@ -18,23 +18,28 @@ document.addEventListener('DOMContentLoaded', function () {
     document.documentElement.style.setProperty('--columns', cols);
     document.documentElement.style.setProperty('--rows', rows);
 
-    const numMines = parseInt(bombCount);
-    createBoard(rows, cols, numMines);
+    createBoard(rows, cols, bombCount);
 });
 
-// Variáveis globais para o escopo de trapaça
-let globalBoard;
-let globalRows;
-let globalCols;
-let globalNumMines;
+// Variáveis globais
+let globalBoard, globalRows, globalCols, globalNumMines;
+let revealedCells = 0;
 
+// Função para calcular o tempo limite em segundos
+function calculateTimeLimit(rows, cols) {
+    const totalCells = rows * cols;
+    // Defina o tempo limite com base no tamanho do tabuleiro (por exemplo, 1 segundo por célula)
+    return totalCells; // 1 segundo por célula, ajuste conforme necessário
+}
+
+// Criação do tabuleiro
 function createBoard(rows, cols, numMines) {
     const gameBoard = document.getElementById('game-board');
     gameBoard.innerHTML = '';
 
-    globalRows = rows; // Salva no escopo global
-    globalCols = cols; // Salva no escopo global
-    globalNumMines = numMines; // Salva no escopo global
+    globalRows = rows;
+    globalCols = cols;
+    globalNumMines = numMines;
 
     const board = Array.from({ length: rows }, () =>
         Array.from({ length: cols }, () => ({
@@ -42,7 +47,8 @@ function createBoard(rows, cols, numMines) {
             revealed: false,
             flagged: false,
             element: null,
-            adjacentMines: 0
+            adjacentMines: 0,
+            originallyRevealed: false // Nova propriedade
         }))
     );
 
@@ -66,9 +72,10 @@ function createBoard(rows, cols, numMines) {
     placeMines(board, rows, cols, numMines);
     calculateAdjacentMines(board, rows, cols);
 
-    globalBoard = board; // Salva o board no escopo global
+    globalBoard = board;
 }
 
+// Funções auxiliares
 function placeMines(board, rows, cols, numMines) {
     let placedMines = 0;
     while (placedMines < numMines) {
@@ -99,8 +106,7 @@ function calculateAdjacentMines(board, rows, cols) {
     }
 }
 
-let revealedCells = 0;
-
+// Manipulação de cliques
 function handleCellClick(event, board, rows, cols, numMines) {
     const row = parseInt(event.target.dataset.row);
     const col = parseInt(event.target.dataset.col);
@@ -129,19 +135,29 @@ function handleRightClick(event, board) {
     const col = parseInt(event.target.dataset.col);
 
     if (board[row][col].revealed) {
-        return;
+        return; // Se a célula já foi revelada, não faz nada
     }
 
     board[row][col].flagged = !board[row][col].flagged;
-    board[row][col].element.classList.toggle('flag');
+    const remainingBombsElement = document.getElementById('bombs-count');
+
+    if (board[row][col].flagged) {
+        board[row][col].element.textContent = '🚩'; 
+        remainingBombsElement.textContent = parseInt(remainingBombsElement.textContent) - 1;
+    } else {
+        board[row][col].element.textContent = '';
+        remainingBombsElement.textContent = parseInt(remainingBombsElement.textContent) + 1;
+    }
 }
 
+// Revelação de células
 function revealCell(cell) {
     if (cell.revealed) {
         return;
     }
 
     cell.revealed = true;
+    cell.originallyRevealed = true; 
     cell.element.classList.add('revealed');
 
     if (cell.mine) {
@@ -151,7 +167,7 @@ function revealCell(cell) {
         cell.element.classList.add(`number-${cell.adjacentMines}`);
     }
 
-    revealedCells++; // Incrementa o contador de células reveladas
+    revealedCells++; 
 }
 
 function revealAdjacentCells(board, row, col, rows, cols) {
@@ -167,30 +183,27 @@ function revealAdjacentCells(board, row, col, rows, cols) {
     }
 }
 
-// Função para revelar todas as células (usada no cheat)
 function revealBoard(board, rows, cols) {
     for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
-            if (!board[row][col].revealed) { // Verifica se a célula não foi revelada
-                revealCell(board[row][col]); // Revela a célula
-            }
+            revealCell(board[row][col]);
         }
     }
 }
 
-// Função para esconder a célula
-function hideCell(cell) {
-    cell.revealed = false; // Reseta o estado da célula
-    cell.originallyRevealed = false; // Reseta o estado original
-    cell.element.classList.remove('revealed'); // Remove a classe que revela a célula
-    cell.element.textContent = ''; // Limpa o conteúdo da célula
+function hideCell(cell) {    
+    cell.revealed = false; 
+    cell.element.classList.remove('revealed'); 
+    cell.element.textContent = '';
 }
 
 function gameOver(board, rows, cols) {
     alert('Você perdeu!');
     stopTimer();
-    
-    // Revela todas as células do tabuleiro, incluindo as minas
+
+    const remainingBombsElement = document.getElementById('bombs-count');
+    remainingBombsElement.textContent = '0';
+
     revealBoard(board, rows, cols);
 }
 
@@ -223,29 +236,51 @@ function stopTimer() {
     clearInterval(timerInterval);
 }
 
+// Iniciar timer ao clicar no tabuleiro
 document.getElementById("game-board").addEventListener("click", startTimer);
-
 
 // Botão trapaça
 document.getElementById('cheatBtn').addEventListener('click', function(event) {
     event.preventDefault(); // Evita o comportamento padrão do link
+    console.log('Botão de trapaça clicado');
+
+    // Armazena o estado original das células antes da revelação
+    const originalStates = globalBoard.map(row => row.map(cell => ({
+        revealed: cell.revealed,
+        flagged: cell.flagged,
+        adjacentMines: cell.adjacentMines,
+        mine: cell.mine, 
+        textContent: cell.element.textContent 
+    })));
 
     // Revela todas as células do tabuleiro
-    for (let row = 0; row < globalRows; row++) {
-        for (let col = 0; col < globalCols; col++) {
-            revealCell(globalBoard[row][col]); // Revela a célula
-        }
-    }
+    revealBoard(globalBoard, globalRows, globalCols);
+    console.log('Todas as células foram reveladas');
 
-    // Aguarda o tempo de trapaça e então oculta as células não reveladas
+    // Aguarda 2 segundos e então oculta as células não reveladas
     setTimeout(function () {
+        console.log('Ocultando células não reveladas');
         for (let row = 0; row < globalRows; row++) {
             for (let col = 0; col < globalCols; col++) {
-                // Se a célula ainda não foi aberta, retorne ao estado original
-                if (!globalBoard[row][col].revealed) {
+                // Se a célula não foi originalmente revelada, retorne ao estado original
+                if (!originalStates[row][col].revealed) {
                     hideCell(globalBoard[row][col]); 
+                } else {
+                    // Se a célula foi revelada, restaura seu estado
+                    globalBoard[row][col].revealed = true;
+                    globalBoard[row][col].element.classList.add('revealed'); 
+
+                    // Restaura o texto somente se a célula era uma mina ou tinha minas adjacentes
+                    if (originalStates[row][col].mine) {
+                        globalBoard[row][col].element.textContent = '💣'; 
+                    } else if (originalStates[row][col].adjacentMines > 0) {
+                        globalBoard[row][col].element.textContent = originalStates[row][col].adjacentMines; 
+                    } else {
+                        globalBoard[row][col].element.textContent = ''; 
+                    }
                 }
             }
         }
-    }, 2000); // Executa após o tempo de trapaça
+        console.log('Células não reveladas foram ocultadas');
+    }, 2000); 
 });
