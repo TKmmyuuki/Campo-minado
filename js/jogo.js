@@ -1,3 +1,7 @@
+// Variáveis globais
+let globalBoard, globalRows, globalCols, globalNumMines;
+let revealedCells = 0;
+
 document.addEventListener('DOMContentLoaded', function () {
     const gridSize = localStorage.getItem('gridSize');
     const bombCountWithSuffix = localStorage.getItem('bombCount');
@@ -20,10 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     createBoard(rows, cols, bombCount);
 });
-
-// Variáveis globais
-let globalBoard, globalRows, globalCols, globalNumMines;
-let revealedCells = 0;
 
 // Função para calcular o tempo limite em segundos
 function calculateTimeLimit(rows, cols) {
