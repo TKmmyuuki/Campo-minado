@@ -106,9 +106,8 @@ label {
     display: block;
 }
 
-/* Centraliza o botão horizontalmente no contêiner pai */
 .container {
-    text-align: center; /* Adiciona centralização ao conteúdo do contêiner */
+    text-align: center; /
 }
 
 .btn {
@@ -119,7 +118,7 @@ label {
     border-radius: 5px;
     font-weight: bold;
     transition: background-color 0.3s ease;
-    display: inline-block; /* Garante que o botão seja tratado como um bloco em linha */
+    display: inline-block;
 }
 
 .btn:hover {

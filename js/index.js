@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
         validateCustomInput();
         updateMaxBombs();
     });
+
     customColsInput.addEventListener('input', function() {
         validateCustomInput();
         updateMaxBombs();
@@ -102,47 +103,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
         window.location.href = '../pages/jogo.html';
     });
-});
-
-
-document.getElementById('btn-jogar').addEventListener('click', function(event) {
-    event.preventDefault();
-
-    const gridSize = document.querySelector('input[name="grid-size"]:checked')?.value;
-    const gameMode = document.querySelector('input[name="game-mode"]:checked')?.value;
-    let bombCount; // Inicializa bombCount aqui
-
-    if (gridSize === 'personalizado') {
-        const customRows = document.getElementById('custom-rows').value;
-        const customCols = document.getElementById('custom-cols').value;
-        bombCount = document.getElementById('custom-bombs').value; // Captura o valor de bombas personalizadas
-
-        // Armazena o gridSize personalizado
-        localStorage.setItem('gridSize', `${customRows}x${customCols}`);
-
-        // Calcula o número máximo de bombas permitido
-        const totalCells = customRows * customCols;
-        const maxBombsAllowed = totalCells > 1 ? totalCells - 1 : 0; // Deixa pelo menos 1 célula vazia
-
-        // Valida o número de bombas
-        if (bombCount > maxBombsAllowed) {
-            alert(`O número máximo de bombas é ${maxBombsAllowed} para o tamanho do tabuleiro atual.`);
-            return;
-        }
-    } else {
-        // Se não for personalizado, captura a quantidade de bombas da opção padrão
-        bombCount = document.querySelector('input[name="bomb-count"]:checked')?.value;
-        localStorage.setItem('gridSize', gridSize);
-    }
-
-    if (!bombCount || !gameMode) {
-        alert("Por favor, selecione todas as opções antes de continuar.");
-        return;
-    }
-
-    bombCount = bombCount + " bombas"; // Formata bombCount
-    localStorage.setItem('bombCount', bombCount);
-    localStorage.setItem('gameMode', gameMode);
-
-    window.location.href = '../pages/jogo.html';
 });
