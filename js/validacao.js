@@ -14,9 +14,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const validPassword = validarPassword();
 
         if (validName && validData && validTelefone && validCPF && validEmail && validUsername && validPassword) {
-            // Se todas as validações passarem, redireciona para a página de login
+            // Se todas as validações passarem, envia o formulário
             alert('Cadastro realizado com sucesso!');
-            window.location.href = 'login.html';
+            formCadastro.submit(); // Envia o formulário para o 'register.php'
         } else {
             alert('Por favor, corrija os erros no formulário antes de prosseguir.');
         }
