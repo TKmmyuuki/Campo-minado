@@ -1,102 +1,137 @@
-// Função de validação do nome completo
-function validarNome() {
-    const nome = document.getElementById('name').value;
-    if (nome.length < 3) {
-        alert('O nome completo deve ter pelo menos 3 caracteres.');
-        return false;
-    }
-    return true;
-}
+document.addEventListener('DOMContentLoaded', function () {
+    const formCadastro = document.getElementById('form-cadastro');
 
-// Função de validação do telefone
-function validarTelefone() {
-    const telefone = document.getElementById('telefone').value;
-    const telefoneRegex = /^\(\d{2}\)\d{5}-\d{4}$/;
-    if (!telefoneRegex.test(telefone)) {
-        alert('O telefone deve estar no formato (XX)XXXXX-XXXX');
-        return false;
-    }
-    return true;
-}
+    formCadastro.addEventListener('submit', function (event) {
+        // Impede o envio do formulário até que todas as validações sejam realizadas
+        event.preventDefault();
 
-// Função de validação do e-mail
-function validarEmail() {
-    const email = document.getElementById('email').value;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        alert('Digite um e-mail válido.');
-        return false;
-    }
-    return true;
-}
+        const validName = validarNome();
+        const validData = validarData();
+        const validTelefone = validarTelefone();
+        const validCPF = validarCPF();
+        const validEmail = validarEmail();
+        const validUsername = validarUsername();
+        const validPassword = validarPassword();
 
-// Função de validação do nome de usuário
-function validarUsuario() {
-    const username = document.getElementById('username').value;
-    if (username.length < 3) {
-        alert('O nome de usuário deve ter pelo menos 3 caracteres.');
-        return false;
-    }
-    return true;
-}
+        if (validName && validData && validTelefone && validCPF && validEmail && validUsername && validPassword) {
+            // Se todas as validações passarem, redireciona para a página de login
+            alert('Cadastro realizado com sucesso!');
+            window.location.href = 'login.html';
+        } else {
+            alert('Por favor, corrija os erros no formulário antes de prosseguir.');
+        }
+    });
 
-// Função de validação da senha
-function validarSenha() {
-    const password = document.getElementById('password').value;
-    if (password.length < 6) {
-        alert('A senha deve ter no mínimo 6 caracteres.');
-        return false;
-    }
-    return true;
-}
+    function validarNome() {
+        const nameInput = document.getElementById('name');
+        const nameError = document.getElementById('name-error');
+        const nameValue = nameInput.value.trim();
 
-
-// Função de validação do CPF
-function validarCPF() {
-    const cpf = document.getElementById('cpf').value;
-    const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/; // Formato: xxx.xxx.xxx-xx
-    if (!cpfRegex.test(cpf)) {
-        alert('O CPF deve estar no formato xxx.xxx.xxx-xx');
-        return false;
+        if (nameValue === '') {
+            nameError.textContent = 'O nome é obrigatório.';
+            nameInput.classList.add('input-error');
+            return false;
+        } else {
+            nameError.textContent = '';
+            nameInput.classList.remove('input-error');
+            return true;
+        }
     }
-    return true;
-}
 
-// Função de validação da data
-function validarData() {
-    const data = document.getElementById('data').value;
-    const dataRegex = /^\d{2}\/\d{2}\/\d{4}$/; // Formato: dd/mm/aaaa
-    if (!dataRegex.test(data)) {
-        alert('A data deve estar no formato dd/mm/aaaa');
-        return false;
-    }
-    return true;
-}
+    function validarData() {
+        const dataInput = document.getElementById('data');
+        const dataError = document.getElementById('data-error');
+        const dataValue = dataInput.value;
 
-function verificarAtualizacao() {
-    if (
-        validarNome() &&
-        validarTelefone() &&
-        validarEmail() &&
-        validarUsuario() &&
-        validarSenha()
-    ) {
-        alert("Informações atualizadas!"); 
-        window.location.href = "index.html";
+        if (dataValue === '') {
+            dataError.textContent = 'A data de nascimento é obrigatória.';
+            dataInput.classList.add('input-error');
+            return false;
+        } else {
+            dataError.textContent = '';
+            dataInput.classList.remove('input-error');
+            return true;
+        }
     }
-}
 
-function verificarCadastro() {
-    if (
-        validarNome() &&
-        validarTelefone() &&
-        validarEmail() &&
-        validarUsuario() &&
-        validarSenha() &&
-        validarCPF() &&
-        validarData()
-    ) {
-        alert("Perfil cadastrado!"); 
-        window.location.href = "login.html";
+    function validarTelefone() {
+        const telefoneInput = document.getElementById('telefone');
+        const telefoneError = document.getElementById('telefone-error');
+        let telefone = telefoneInput.value.replace(/\D/g, '');
+
+        if (telefone.length < 10 || telefone.length > 11) {
+            telefoneError.textContent = 'Por favor, insira um telefone válido com DDD.';
+            telefoneInput.classList.add('input-error');
+            return false;
+        } else {
+            telefoneError.textContent = '';
+            telefoneInput.classList.remove('input-error');
+            return true;
+        }
     }
-}
+
+    function validarCPF() {
+        const cpfInput = document.getElementById('cpf');
+        const cpfError = document.getElementById('cpf-error');
+        let cpf = cpfInput.value.replace(/\D/g, '');
+
+        if (cpf.length !== 11) {
+            cpfError.textContent = 'O CPF deve conter 11 dígitos.';
+            cpfInput.classList.add('input-error');
+            return false;
+        } else {
+            cpfError.textContent = '';
+            cpfInput.classList.remove('input-error');
+            return true;
+        }
+    }
+
+    function validarEmail() {
+        const emailInput = document.getElementById('email');
+        const emailError = document.getElementById('email-error');
+        const emailValue = emailInput.value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailRegex.test(emailValue)) {
+            emailError.textContent = 'Por favor, insira um e-mail válido.';
+            emailInput.classList.add('input-error');
+            return false;
+        } else {
+            emailError.textContent = '';
+            emailInput.classList.remove('input-error');
+            return true;
+        }
+    }
+
+    function validarUsername() {
+        const usernameInput = document.getElementById('username');
+        const usernameError = document.getElementById('username-error');
+        const usernameValue = usernameInput.value.trim();
+
+        if (usernameValue.length < 3) {
+            usernameError.textContent = 'O usuário deve ter pelo menos 3 caracteres.';
+            usernameInput.classList.add('input-error');
+            return false;
+        } else {
+            usernameError.textContent = '';
+            usernameInput.classList.remove('input-error');
+            return true;
+        }
+    }
+
+    function validarPassword() {
+        const passwordInput = document.getElementById('password');
+        const passwordError = document.getElementById('password-error');
+        const passwordValue = passwordInput.value.trim();
+
+        if (passwordValue.length < 6) {
+            passwordError.textContent = 'A senha deve ter pelo menos 6 caracteres.';
+            passwordInput.classList.add('input-error');
+            return false;
+        } else {
+            passwordError.textContent = '';
+            passwordInput.classList.remove('input-error');
+            return true;
+        }
+    }
+});

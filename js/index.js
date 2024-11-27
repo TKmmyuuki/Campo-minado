@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return true;
     }
 
+    // Atualiza o máximo de bombas permitido quando o tamanho do grid muda
     gridRadios.forEach(radio => {
         radio.addEventListener('change', function() {
             customSizeInput.style.display = customRadio.checked ? 'block' : 'none';
@@ -62,8 +63,14 @@ document.addEventListener('DOMContentLoaded', function() {
         updateMaxBombs();
     });
 
-    customBombRadio.addEventListener('change', function() {
-        customBombInput.style.display = customBombRadio.checked ? 'block' : 'none';
+    // Seleciona todos os botões de rádio do grupo "bomb-count"
+    const bombRadios = document.querySelectorAll('input[name="bomb-count"]');
+
+    // Adiciona um listener a cada botão de rádio para mostrar ou esconder o campo personalizado
+    bombRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            customBombInput.style.display = customBombRadio.checked ? 'block' : 'none';
+        });
     });
 
     customBombsInputField.addEventListener('input', function() {
@@ -83,13 +90,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (gridSize === 'personalizado') {
             const customRows = customRowsInput.value;
             const customCols = customColsInput.value;
-            bombCount = customBombsInputField.value;
+            bombCount = customBombRadio.checked ? customBombsInputField.value : document.querySelector('input[name="bomb-count"]:checked')?.value;
 
             localStorage.setItem('gridSize', `${customRows}x${customCols}`);
 
             if (!validateBombCount(bombCount)) return; // Validação do número de bombas
         } else {
-            bombCount = document.querySelector('input[name="bomb-count"]:checked')?.value;
+            bombCount = customBombRadio.checked ? customBombsInputField.value : document.querySelector('input[name="bomb-count"]:checked')?.value;
             localStorage.setItem('gridSize', gridSize);
         }
 
