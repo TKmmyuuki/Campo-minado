@@ -13,51 +13,54 @@
 
     <div class="cadastro-container">
         <h2>Cadastro</h2>
-        <form action="/cadastro" method="POST">
+        <form method="POST" id="form-cadastro">
             <div class="form-group">
                 <label for="name">Nome Completo:</label>
                 <input type="text" id="name" name="name" placeholder="Maria Marcelina" required>
+                <span id="name-error" class="error-message"></span>
             </div>
 
             <div class="form-group-row">
                 <div class="form-group">
                     <label for="data">Data de Nascimento:</label>
                     <input type="date" id="data" name="data" required>
+                    <span id="data-error" class="error-message"></span>
                 </div>
                 <div class="form-group">
                     <label for="telefone">Telefone:</label>
-                    <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" required>
+                    <input type="tel" id="telefone" name="telefone" placeholder="Digite seu telefone" required>
+                    <span id="telefone-error" class="error-message"></span>
                 </div>
             </div>
 
-            <div class="form-group-row">
-                <div class="form-group">
-                    <label for="cpf">CPF:</label>
-                    <input type="text" id="cpf" name="cpf" placeholder="XXX.XXX.XXX-XX" required>
-                </div>
+            <div class="form-group">
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" required>
+                <span id="cpf-error" class="error-message"></span>
             </div>
 
-            <div class="form-group-row">
-                <div class="form-group">
-                    <label for="email">E-mail:</label>
-                    <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
-                </div>
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+                <span id="email-error" class="error-message"></span>
             </div>
 
             <div class="form-group-row">
                 <div class="form-group">
                     <label for="username">Usuário:</label>
                     <input type="text" id="username" name="username" placeholder="Digite um nome de usuário" required>
+                    <span id="username-error" class="error-message"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Senha:</label>
                     <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+                    <span id="password-error" class="error-message"></span>
                 </div>
             </div>
 
             <div class="container">
-                <button type="button" class="btn" onclick="verificarCadastro()">Cadastrar</button>
+                <button type="submit" class="btn">Cadastrar</button>
             </div>
         </form>
     </div>

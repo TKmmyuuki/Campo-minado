@@ -3,6 +3,7 @@ let globalBoard, globalRows, globalCols, globalNumMines;
 let revealedCells = 0;
 let globalGameMode;
 let timeLeft; 
+let isGameOver = false;
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -78,6 +79,11 @@ function createBoard(rows, cols, numMines) {
     globalCols = cols;
     globalNumMines = numMines;
 
+    const cellSize = 400 / Math.max(rows, cols);
+    const fontSize = Math.max(10, cellSize * 0.6) + 'px';
+
+    document.documentElement.style.setProperty('--cell-font-size', fontSize);
+
     const board = Array.from({ length: rows }, () =>
         Array.from({ length: cols }, () => ({
             mine: false,
@@ -145,25 +151,23 @@ function calculateAdjacentMines(board, rows, cols) {
 
 // Manipulação de cliques
 function handleCellClick(event, board, rows, cols, numMines) {
+    if (isGameOver) return; // Impede ações após o fim do jogo
+
     const row = parseInt(event.target.dataset.row);
     const col = parseInt(event.target.dataset.col);
 
-    // Verifica se a célula já foi revelada ou está marcada com bandeira
     if (board[row][col].revealed || board[row][col].flagged) {
         return;
     }
 
     revealCell(board[row][col]);
 
-    // Se a célula contém uma bomba, o jogo acaba
     if (board[row][col].mine) {
         gameOver(board, rows, cols);
     } else if (board[row][col].adjacentMines === 0) {
-        // Se a célula não contém bombas ao redor, revela as células adjacentes
         revealAdjacentCells(board, row, col, rows, cols);
     }
 
-    // Verifica a condição de vitória após cada clique
     checkVictory(board, rows, cols, numMines);
 }
 
@@ -173,18 +177,25 @@ function handleRightClick(event, board) {
     const col = parseInt(event.target.dataset.col);
 
     if (board[row][col].revealed) {
-        return; // Se a célula já foi revelada, não faz nada
+        return;
+    }
+
+    const remainingBombsElement = document.getElementById('bombs-count');
+    let remainingBombs = parseInt(remainingBombsElement.textContent);
+
+    if (!board[row][col].flagged && remainingBombs === 0) {
+        alert("Você não tem mais bandeiras disponíveis.");
+        return;
     }
 
     board[row][col].flagged = !board[row][col].flagged;
-    const remainingBombsElement = document.getElementById('bombs-count');
 
     if (board[row][col].flagged) {
-        board[row][col].element.textContent = '🚩'; 
-        remainingBombsElement.textContent = parseInt(remainingBombsElement.textContent) - 1;
+        board[row][col].element.textContent = '🚩';
+        remainingBombsElement.textContent = remainingBombs - 1;
     } else {
         board[row][col].element.textContent = '';
-        remainingBombsElement.textContent = parseInt(remainingBombsElement.textContent) + 1;
+        remainingBombsElement.textContent = remainingBombs + 1;
     }
 }
 
@@ -238,19 +249,22 @@ function hideCell(cell) {
 let gameOverDisplayed = false; 
 
 function gameOver(board, rows, cols) {
-    if (gameOverDisplayed) return; 
+    if (gameOverDisplayed) return;
     gameOverDisplayed = true;
+    isGameOver = true; // Marca o jogo como terminado
 
     alert('Você perdeu!');
     stopTimer();
-    const remainingBombsElement = document.getElementById('bombs-count');
-    remainingBombsElement.textContent = '0';
+    document.getElementById('bombs-count').textContent = '0';
 
     revealBoard(board, rows, cols);
 }
 
 // Verificação de vitória
 function checkVictory(board, rows, cols, numMines) {
+    if (isGameOver) return;
+
+
     let flaggedMines = 0;
     let revealedCells = 0;
 
