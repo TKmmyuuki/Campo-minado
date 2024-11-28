@@ -108,6 +108,35 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('bombCount', bombCount + " bombas");
         localStorage.setItem('gameMode', gameMode);
 
-        window.location.href = '../pages/jogo.html';
+        window.location.href = '../pages/jogo.php';
     });
+    
+    loadHighScores();
 });
+
+function loadHighScores() {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', '../php/get_highscores.php', true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            const scores = JSON.parse(xhr.responseText);
+            const leaderboardBody = document.getElementById('leaderboard-body');
+            leaderboardBody.innerHTML = ''; // Limpa o conteúdo existente
+
+            scores.forEach((score, index) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${score.username}</td>
+                    <td>${score.grid_size}</td>
+                    <td>${score.bomb_count}</td>
+                    <td>${score.game_mode}</td>
+                    <td>${score.time_spent}</td>
+                    <td>${new Date(score.date_played).toLocaleDateString('pt-BR')}</td>
+                `;
+                leaderboardBody.appendChild(tr);
+            });
+        }
+    };
+    xhr.send();
+}

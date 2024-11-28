@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.html");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -15,16 +23,19 @@
         <div class="button-container">
             <a href="#manual" class="btn">Como Jogar?</a>
             <a href="#ranking" class="btn">Ranking</a>
-            <a href="../pages/perfil.html" class="btn">Atualizar Perfil</a>
+            <a href="../pages/perfil.php" class="btn">Atualizar Perfil</a>
+        </div>
+        <div class="user-info">
+            Olá, <?php echo htmlspecialchars($_SESSION['username']); ?>!
         </div>
         <div class="sair">
-            <a href="../pages/login.html" class="btn btn-sair">Sair</a>
+            <a href="../php/logout.php" class="btn btn-sair">Sair</a>
         </div>
     </nav>
-
+    
     <div id="top" class="welcome-section">
         <div class="welcome-text">
-            <h1>Bem-vindo ao <br>Campo Minado!</h1>
+            <h1>Bem-vindo ao <br>Campo Minado, <?php echo htmlspecialchars($_SESSION['username']); ?>! </h1>
         </div>
         <div class="options">
             <div class="option-box">
@@ -77,7 +88,7 @@
             </div>
         </div>
 
-        <a href="jogo.html" id="btn-jogar" class="btn-jogar">
+        <a href="jogo.php" id="btn-jogar" class="btn-jogar">
             <img src="../images/botao-jogar.png" alt="Jogar">
         </a>
     </div>
@@ -99,99 +110,8 @@
                         <th>DATA</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Adf23_SA</td>
-                        <td>20X20</td>
-                        <td>14</td>
-                        <td>clássico</td>
-                        <td>03 : 45 : 20</td>
-                        <td>21/03/2024</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Adf23_SA</td>
-                        <td>20X20</td>
-                        <td>14</td>
-                        <td>clássico</td>
-                        <td>03 : 45 : 20</td>
-                        <td>21/03/2024</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Adf23_SA</td>
-                        <td>20X20</td>
-                        <td>14</td>
-                        <td>clássico</td>
-                        <td>03 : 45 : 20</td>
-                        <td>21/03/2024</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Adf23_SA</td>
-                        <td>20X20</td>
-                        <td>14</td>
-                        <td>clássico</td>
-                        <td>03 : 45 : 20</td>
-                        <td>21/03/2024</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Adf23_SA</td>
-                        <td>20X20</td>
-                        <td>14</td>
-                        <td>clássico</td>
-                        <td>03 : 45 : 20</td>
-                        <td>21/03/2024</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Adf23_SA</td>
-                        <td>20X20</td>
-                        <td>14</td>
-                        <td>clássico</td>
-                        <td>03 : 45 : 20</td>
-                        <td>21/03/2024</td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>Adf23_SA</td>
-                        <td>20X20</td>
-                        <td>14</td>
-                        <td>clássico</td>
-                        <td>03 : 45 : 20</td>
-                        <td>21/03/2024</td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>Adf23_SA</td>
-                        <td>20X20</td>
-                        <td>14</td>
-                        <td>clássico</td>
-                        <td>03 : 45 : 20</td>
-                        <td>21/03/2024</td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td>Adf23_SA</td>
-                        <td>20X20</td>
-                        <td>14</td>
-                        <td>clássico</td>
-                        <td>03 : 45 : 20</td>
-                        <td>21/03/2024</td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>Adf23_SA</td>
-                        <td>20X20</td>
-                        <td>14</td>
-                        <td>clássico</td>
-                        <td>03 : 45 : 20</td>
-                        <td>21/03/2024</td>
-                    </tr>
-                </tbody>
-            </table>
+            <tbody id="leaderboard-body"></tbody>
+</table>
         </div>
     </section>
 

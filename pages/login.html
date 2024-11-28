@@ -11,17 +11,17 @@
 
     <body>
 
-        <div class="login-container">
+        <div class="login-container">   
             <h2>Login</h2>
-            <form action="/login" method="POST">
+            <form method="POST" action="../php/login.php">
                 <label for="username">Usuário:</label>
                 <input type="text" id="username" name="username" placeholder="Digite seu usuário" required>
-
+            
                 <label for="password">Senha:</label>
                 <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
-
+            
                 <div class="container">
-                    <a href="index.html" class="btn">Acessar</a>
+                    <button type="submit" class="btn">Acessar</button>
                 </div>
             </form>
             <div class="link">
