@@ -1,4 +1,3 @@
-// Variáveis globais
 let globalBoard, globalRows, globalCols, globalNumMines;
 let revealedCells = 0;
 let globalGameMode;
@@ -17,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!gridSize || !bombCountWithSuffix || !gameMode) {
         alert("Configurações de jogo não encontradas. Volte à página inicial e configure o jogo.");
-        window.location.href = '../pages/index.html';
+        window.location.href = '../pages/index.php';
         return;
     }
 
@@ -31,15 +30,15 @@ document.addEventListener('DOMContentLoaded', function () {
     document.documentElement.style.setProperty('--rows', rows);
 
     createBoard(rows, cols, bombCount);
+
+    loadUserHistory();
 });
 
-// Função para calcular o tempo limite em segundos
 function calculateTimeLimit(rows, cols) {
     const totalCells = rows * cols;
     return totalCells; 
 }
 
-// Função de contagem regressiva
 function startCountdownTimer() {
     if (isTimerStarted) return; 
     isTimerStarted = true;
@@ -70,7 +69,6 @@ function startCountdownTimer() {
 }
 
 
-// Criação do tabuleiro
 function createBoard(rows, cols, numMines) {
     const gameBoard = document.getElementById('game-board');
     gameBoard.innerHTML = '';
@@ -118,7 +116,6 @@ function createBoard(rows, cols, numMines) {
     globalBoard = board;
 }
 
-// Funções auxiliares
 function placeMines(board, rows, cols, numMines) {
     let placedMines = 0;
     while (placedMines < numMines) {
@@ -149,7 +146,6 @@ function calculateAdjacentMines(board, rows, cols) {
     }
 }
 
-// Manipulação de cliques
 function handleCellClick(event, board, rows, cols, numMines) {
     if (isGameOver) return; // Impede ações após o fim do jogo
 
@@ -199,7 +195,6 @@ function handleRightClick(event, board) {
     }
 }
 
-// Revelação de células
 function revealCell(cell) {
     if (cell.revealed) {
         return;
@@ -251,16 +246,16 @@ let gameOverDisplayed = false;
 function gameOver(board, rows, cols) {
     if (gameOverDisplayed) return;
     gameOverDisplayed = true;
-    isGameOver = true; // Marca o jogo como terminado
+    isGameOver = true;
 
     alert('Você perdeu!');
     stopTimer();
     document.getElementById('bombs-count').textContent = '0';
 
     revealBoard(board, rows, cols);
+    submitScore('derrota', timerElement.textContent);
 }
 
-// Verificação de vitória
 function checkVictory(board, rows, cols, numMines) {
     if (isGameOver) return;
 
@@ -274,12 +269,10 @@ function checkVictory(board, rows, cols, numMines) {
 
             // Verifica se a célula contém uma bomba
             if (cell.mine) {
-                // Verifica se a célula com bomba está marcada com bandeira
                 if (cell.flagged) {
                     flaggedMines++;
                 }
             } else {
-                // Verifica se a célula sem bomba está revelada
                 if (cell.revealed) {
                     revealedCells++;
                 }
@@ -287,11 +280,11 @@ function checkVictory(board, rows, cols, numMines) {
         }
     }
 
-    // Verifica se todas as bombas foram corretamente marcadas e todas as células sem bomba foram reveladas
     if (flaggedMines === numMines || revealedCells === (rows * cols - numMines)) {
         alert('Você venceu!');
         stopTimer();
-        revealBoard(board, rows, cols); // Revela o tabuleiro como prêmio
+        revealBoard(board, rows, cols);
+        submitScore('vitória', timerElement.textContent);
     }
 }
 
@@ -325,7 +318,6 @@ function stopTimer() {
     clearInterval(timerInterval);
 }
 
-// Iniciar timer ao clicar no tabuleiro
 document.getElementById("game-board").addEventListener("click", function() {
     if (globalGameMode === 'clássico') {
         startTimer();
@@ -334,12 +326,10 @@ document.getElementById("game-board").addEventListener("click", function() {
     }
 });
 
-// Botão trapaça
 document.getElementById('cheatBtn').addEventListener('click', function(event) {
     event.preventDefault(); 
     console.log('Botão de trapaça clicado');
 
-    // Armazena o estado original das células antes da revelação
     const originalStates = globalBoard.map(row => row.map(cell => ({
         revealed: cell.revealed,
         flagged: cell.flagged, 
@@ -348,29 +338,23 @@ document.getElementById('cheatBtn').addEventListener('click', function(event) {
         textContent: cell.element.textContent 
     })));
 
-    // Revela todas as células do tabuleiro
     revealBoard(globalBoard, globalRows, globalCols);
     console.log('Todas as células foram reveladas');
 
-    // Aguarda 2 segundos e então oculta as células não reveladas
     setTimeout(function () {
         console.log('Ocultando células não reveladas');
         for (let row = 0; row < globalRows; row++) {
             for (let col = 0; col < globalCols; col++) {
-                // Se a célula não foi originalmente revelada, retorne ao estado original
                 if (!originalStates[row][col].revealed) {
                     hideCell(globalBoard[row][col]); 
-                    // Se a célula estava sinalizada com bandeirinha, restaura a bandeirinha
                     if (originalStates[row][col].flagged) {
                         globalBoard[row][col].flagged = true;
                         globalBoard[row][col].element.textContent = '🚩'; 
                     }
                 } else {
-                    // Se a célula foi revelada, restaura seu estado
                     globalBoard[row][col].revealed = true;
                     globalBoard[row][col].element.classList.add('revealed'); 
 
-                    // Restaura o texto somente se a célula era uma mina ou tinha minas adjacentes
                     if (originalStates[row][col].mine) {
                         globalBoard[row][col].element.textContent = '💣'; 
                     } else if (originalStates[row][col].adjacentMines > 0) {
@@ -384,3 +368,49 @@ document.getElementById('cheatBtn').addEventListener('click', function(event) {
         console.log('Células não reveladas foram ocultadas');
     }, 2000); 
 });
+
+function submitScore(status, timeSpent) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '../php/submit_score.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    const params = `grid_size=${encodeURIComponent(globalRows + 'x' + globalCols)}&` +
+                   `bomb_count=${encodeURIComponent(globalNumMines)}&` +
+                   `game_mode=${encodeURIComponent(globalGameMode)}&` +
+                   `time_spent=${encodeURIComponent(timeSpent)}&` +
+                   `status=${encodeURIComponent(status)}`;
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log('Score enviado com sucesso');
+        }
+    };
+    xhr.send(params);
+}
+
+function loadUserHistory() {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', '../php/get_user_history.php', true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            const scores = JSON.parse(xhr.responseText);
+            const historyBody = document.getElementById('history-body');
+            historyBody.innerHTML = ''; // Limpa o conteúdo existente
+
+            scores.forEach(score => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${username}</td>
+                    <td>${score.grid_size}</td>
+                    <td>${score.bomb_count}</td>
+                    <td>${score.game_mode}</td>
+                    <td>${score.status}</td>
+                    <td>${score.time_spent}</td>
+                    <td>${new Date(score.date_played).toLocaleDateString('pt-BR')}</td>
+                `;
+                historyBody.appendChild(tr);
+            });
+        }
+    };
+    xhr.send();
+}
